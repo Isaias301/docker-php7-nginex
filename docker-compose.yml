@@ -1,0 +1,13 @@
+web:
+    image: nginx:latest
+    ports:
+        - "8080:80"
+    volumes:
+        - ./app:/app
+        - ./config/nginx/server_blocks.conf:/etc/nginx/conf.d/site.conf
+    links:
+        - php
+php:
+    build: ./config/php/
+    volumes:
+        - ./app:/app
